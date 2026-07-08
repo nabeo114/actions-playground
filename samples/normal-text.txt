@@ -1,0 +1,12 @@
+This is a plain text file for GitHub Actions learning.
+
+Purpose:
+- Verify normal workflow execution.
+- Confirm that no credential-like strings are included.
+
+Notes:
+- This file contains only ordinary sentences.
+- It does not include keys, tokens, passwords, or URLs with embedded auth.
+
+Date: 2026-07-08
+Topic: Secret detection baseline test
