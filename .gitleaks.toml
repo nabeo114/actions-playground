@@ -1,0 +1,5 @@
+title = "burger-price-map gitleaks config"
+
+[extend]
+# Keep all default gitleaks detection rules enabled.
+useDefault = true
