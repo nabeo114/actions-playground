@@ -1,4 +1,4 @@
-name: Secret Detection (gitleaks)
+name: Security
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: gitleaks-${{ github.ref }}
+  group: security-${{ github.ref }}
   cancel-in-progress: true
 
 permissions:
@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
