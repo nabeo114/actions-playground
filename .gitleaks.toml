@@ -1,4 +1,4 @@
-title = "burger-price-map gitleaks config"
+title = "actions-playground gitleaks config"
 
 [extend]
 # Keep all default gitleaks detection rules enabled.
