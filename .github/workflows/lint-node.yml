@@ -14,7 +14,6 @@ permissions:
 
 jobs:
   lint:
-    if: hashFiles('package.json') != ''
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
