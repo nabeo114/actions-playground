@@ -5,7 +5,7 @@ Github Actions 学習・実験用の環境
 ## CI の使い分け
 
 - `.github/workflows/ci.yml` は Node.js プロジェクト向けで、`npm run lint` と `npm run format` を実行します。
-- `.github/workflows/security.yml` は `gitleaks` で秘密情報の混入を検査します。
+- `.github/workflows/security.yml` は `gitleaks` による秘密情報の混入検査と `npm audit` による依存関係の脆弱性検査を実行します。
 - `npm run lint` を使うには、ローカルにも `package.json` と `lint` スクリプトが必要です。
 - `npm run lint:fix` を使うと、ESLint が自動修正できる範囲を更新できます。
 - `npm run format` を使うには、ローカルにも `package.json` と `format` スクリプトが必要です。
