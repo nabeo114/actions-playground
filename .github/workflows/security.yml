@@ -44,7 +44,7 @@ jobs:
             -v "$PWD":/repo \
             -w /repo \
             ghcr.io/betterleaks/betterleaks:latest \
-            git . --config .gitleaks.toml
+            sh -lc 'git config --global --add safe.directory /repo && betterleaks git . --config .gitleaks.toml'
 
   dependency-audit:
     runs-on: ubuntu-latest
