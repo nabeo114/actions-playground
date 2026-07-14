@@ -43,9 +43,11 @@ jobs:
           docker run --rm \
             -v "$PWD":/repo \
             -w /repo \
-            --entrypoint /bin/sh \
+            -e GIT_CONFIG_COUNT=1 \
+            -e GIT_CONFIG_KEY_0=safe.directory \
+            -e GIT_CONFIG_VALUE_0=/repo \
             ghcr.io/betterleaks/betterleaks:latest \
-            -lc 'git config --global --add safe.directory /repo && betterleaks git . --config .gitleaks.toml'
+            git . --config .gitleaks.toml
 
   dependency-audit:
     runs-on: ubuntu-latest
