@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "lint": "eslint .",
-    "format": "prettier --check ."
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --check .",
+    "format:fix": "prettier --write ."
   },
   "devDependencies": {
     "eslint": "^9.0.0",
