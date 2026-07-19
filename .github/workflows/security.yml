@@ -58,13 +58,6 @@ jobs:
             --report-format json \
             --report-path betterleaks-report.json
 
-      - name: Upload Betterleaks report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: betterleaks-report
-          path: betterleaks-report.json
-
   dependency-audit:
     runs-on: ubuntu-latest
     steps:
