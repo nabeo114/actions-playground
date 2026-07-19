@@ -3,19 +3,3 @@ title = "actions-playground gitleaks config"
 [extend]
 # Keep all default gitleaks detection rules enabled.
 useDefault = true
-
-[[rules]]
-id = "keycloak-client-secret"
-description = "Detect likely Keycloak client secrets"
-regex = '''(?i)(?:keycloak[_-]?client[_-]?secret|keycloak[_-]?secret|client[_-]?secret|clientSecret)\s*[:=]\s*["']?([A-Za-z0-9._~+/=-]{16,})["']?'''
-secretGroup = 1
-entropy = 3.0
-keywords = ["keycloak", "client_secret", "clientSecret"]
-
-[[rules]]
-id = "api-secret-assignment"
-description = "Detect likely API secret assignments"
-regex = '''(?i)(?:api[_-]?secret|apiSecret)\s*[:=]\s*["']?([A-Za-z0-9._~+/=-]{16,})["']?'''
-secretGroup = 1
-entropy = 3.0
-keywords = ["api_secret", "apiSecret"]
