@@ -10,4 +10,6 @@ Github Actions 学習・実験用の環境
 - `npm run lint:fix` を使うと、ESLint が自動修正できる範囲を更新できます。
 - `npm run format` を使うには、ローカルにも `package.json` と `format` スクリプトが必要です。
 - `npm run format:fix` を使うと、Prettier で自動整形できます。
+- `npm run audit` を使うと、`npm audit --audit-level=high` と同等の依存関係チェックをローカルで実行できます。
+- `npm run audit:fix` を使うと、`npm audit fix` をローカルで実行できます。
 - `package-lock.json` がある場合は `npm ci`、ない場合は `npm install` を使う前提にしています。

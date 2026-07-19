@@ -7,7 +7,9 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --check .",
-    "format:fix": "prettier --write ."
+    "format:fix": "prettier --write .",
+    "audit": "npm audit --audit-level=high",
+    "audit:fix": "npm audit fix"
   },
   "devDependencies": {
     "eslint": "^9.0.0",
