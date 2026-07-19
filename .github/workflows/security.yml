@@ -38,20 +38,25 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Install Betterleaks
+        run: |
+          BETTERLEAKS_VERSION="1.6.1"
+          BETTERLEAKS_SHA256="fbefc700a0bd4522cc952dd2a8f259cdb80526d7e60114aca19bb2d6fdc80f81"
+          BETTERLEAKS_ARCHIVE="betterleaks_${BETTERLEAKS_VERSION}_linux_x64.tar.gz"
+          curl -sSL -o betterleaks.tar.gz \
+            "https://github.com/betterleaks/betterleaks/releases/download/v${BETTERLEAKS_VERSION}/${BETTERLEAKS_ARCHIVE}"
+          echo "${BETTERLEAKS_SHA256}  betterleaks.tar.gz" | sha256sum -c -
+          tar -xzf betterleaks.tar.gz betterleaks
+          chmod +x betterleaks
+          ./betterleaks version
+
       - name: Run Betterleaks
         run: |
-          docker run --rm \
-            -v "$PWD":/repo \
-            -w /repo \
-            -e GIT_CONFIG_COUNT=1 \
-            -e GIT_CONFIG_KEY_0=safe.directory \
-            -e GIT_CONFIG_VALUE_0=/repo \
-            ghcr.io/betterleaks/betterleaks:latest \
-            git . \
+          ./betterleaks git . \
             --config .gitleaks.toml \
             --verbose \
             --report-format json \
-            --report-path /repo/betterleaks-report.json
+            --report-path betterleaks-report.json
 
       - name: Upload Betterleaks report
         if: always()
