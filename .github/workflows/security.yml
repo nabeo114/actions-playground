@@ -26,9 +26,26 @@ jobs:
           fetch-depth: 0
 
       - name: Run gitleaks
-        uses: gitleaks/gitleaks-action@v3
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          docker run --rm \
+            -v "$PWD":/repo \
+            -w /repo \
+            -e GIT_CONFIG_COUNT=1 \
+            -e GIT_CONFIG_KEY_0=safe.directory \
+            -e GIT_CONFIG_VALUE_0=/repo \
+            zricethezav/gitleaks:latest \
+            git /repo \
+            --config /repo/.gitleaks.toml \
+            --verbose \
+            --report-format json \
+            --report-path /repo/gitleaks-report.json
+
+      - name: Upload gitleaks report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gitleaks-report
+          path: gitleaks-report.json
 
   betterleaks:
     runs-on: ubuntu-latest
@@ -47,7 +64,18 @@ jobs:
             -e GIT_CONFIG_KEY_0=safe.directory \
             -e GIT_CONFIG_VALUE_0=/repo \
             ghcr.io/betterleaks/betterleaks:latest \
-            git . --config .gitleaks.toml
+            git . \
+            --config .gitleaks.toml \
+            --verbose \
+            --report-format json \
+            --report-path /repo/betterleaks-report.json
+
+      - name: Upload Betterleaks report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: betterleaks-report
+          path: betterleaks-report.json
 
   dependency-audit:
     runs-on: ubuntu-latest
